@@ -7,7 +7,7 @@ spring:
     
   #MYSQL
   datasource:
-    url: jdbc:mysql://localhost:3306/dbcarros?useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/dbcurrencyexchange?useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: root123
   
@@ -18,7 +18,6 @@ spring:
         dialect: org.hibernate.dialect.MySQL5InnoDBDialect
         show-sql: true
         format-sql: true
-        ddl-auto: auto
     show-sql: true
     
   #SQL
@@ -29,7 +28,7 @@ spring:
   #Flyway
   flyway:
     url: jdbc:mysql://localhost:3306/
-    schemas: currency_exchange     
+    schemas: dbcurrencyexchange     
     user: root
     password: root123
  

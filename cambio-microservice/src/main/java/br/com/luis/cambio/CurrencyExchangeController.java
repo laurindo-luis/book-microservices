@@ -1,6 +1,7 @@
 package br.com.luis.cambio;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
@@ -15,18 +16,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrencyExchangeController {
 	
 	@Autowired
-	private Environment environment;
+	Environment environment;
+	
+	@Autowired
+	private CurrencyExchangeService currencyExchangeService;
 	
 	@GetMapping("/{value}/{from}/{to}")
-	public ResponseEntity<?> getCurrencyExchange(@PathVariable BigDecimal value, 
+	public ResponseEntity<CurrencyExchangeDto> getCurrencyExchange(@PathVariable BigDecimal value, 
 			@PathVariable String from, @PathVariable String to) {
 		
 		String port = environment.getProperty("local.server.port");
 		
-		CurrencyExchange currencyExchange = new CurrencyExchange(
-				1L, "US", "BR", new BigDecimal(5.75), new BigDecimal(1000), port
-		);
+		CurrencyExchangeDto currencyExchangeDto = currencyExchangeService.findFromAndTo(from, to);
+		BigDecimal convertedValue = currencyExchangeDto.calcCurrencyExchange(value);
+		currencyExchangeDto.setConvertedValue(convertedValue.setScale(2, RoundingMode.CEILING));
+		currencyExchangeDto.setEnvironment(port);
 		
-		return ResponseEntity.ok(currencyExchange);
+		return ResponseEntity.ok(currencyExchangeDto);
 	}
 }
