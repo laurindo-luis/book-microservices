@@ -3,7 +3,7 @@ package br.com.luis.book;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import br.com.luis.ObjectNotFoundException;
+import br.com.luis.book.exception.ObjectNotFoundException;
 
 @Service
 public class BookService {
