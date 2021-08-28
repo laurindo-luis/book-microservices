@@ -4,3 +4,31 @@ server:
 spring:
   application:
     name: book-microservice  
+    
+  #MYSQL
+  datasource:
+    url: jdbc:mysql://localhost:3306/dbbook?useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root123
+    
+  #JPA  
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        show-sql: true
+        format-sql: true
+    show-sql: true
+  
+  #SQL  
+  sql:
+    init:
+      mode: always   
+      
+  #Flyway
+  flyway:
+    url: jdbc:mysql://localhost:3306/
+    schemas: dbbook  
+    user: root
+    password: root123     
+          
