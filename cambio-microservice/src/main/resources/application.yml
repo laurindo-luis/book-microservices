@@ -8,7 +8,7 @@ eureka:
   
 spring:
   application:
-    name: cambio-service  
+    name: cambio-microservice  
     
   #MYSQL
   datasource:

@@ -1,0 +1,21 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  SIGSEGV (0xb) at pc=0x00007f95b98b4c82, pid=11966, tid=12010
+#
+# JRE version: OpenJDK Runtime Environment (16.0.1+9) (build 16.0.1+9-24)
+# Java VM: OpenJDK 64-Bit Server VM (16.0.1+9-24, mixed mode, tiered, compressed oops, compressed class ptrs, g1 gc, linux-amd64)
+# Problematic frame:
+# J 1084 c1 java.nio.DirectIntBufferU.get(I)I java.base@16.0.1 (34 bytes) @ 0x00007f95b98b4c82 [0x00007f95b98b4b80+0x0000000000000102]
+#
+# Core dump will be written. Default location: Core dumps may be processed with "/usr/share/apport/apport %p %s %c %d %P %E" (or dumping to /home/luis/Documents/workspace-spring-tool-suite-4-4.11.0.RELEASE/book-microservices/book-microservice/core.11966)
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -XX:+ShowCodeDetailsInExceptionMessages -agentlib:jdwp=transport=dt_socket,suspend=y,address=localhost:34699 -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=44453 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Djava.rmi.server.hostname=localhost -Dspring.jmx.enabled=true -Dspring.application.admin.enabled=true -Djava.security.egd=file:/dev/./urandom -XX:TieredStopAtLevel=1 -Dspring.boot.project.name=book-microservice -javaagent:/opt/sts-4.11.0.RELEASE/configuration/org.eclipse.osgi/253/0/.cp/lib/javaagent-shaded.jar -Dfile.encoding=UTF-8 br.com.luis.BookMicroserviceApplication --spring.output.ansi.enabled=always
+
+Host: 
