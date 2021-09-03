@@ -36,6 +36,7 @@ public class BookService {
 		
 		if(nonNull(currencyExchangeDto)) {
 			book.setPrice(currencyExchangeDto.getConvertedValue());
+			book.setEnvironment(currencyExchangeDto.getEnvironment());
 		}
 		return book;
 	}

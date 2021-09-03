@@ -31,7 +31,9 @@ public class BookController {
 		
 		String port = environment.getProperty("local.server.port");
 		BookDto book = bookService.getBookById(id, currency);
-		book.setEnvironment(port);
+		
+		book.setEnvironment(String.format("Port cambio-service: %s - Port book-service: %s",
+			book.getEnvironment(), port));
 		
 		return ResponseEntity.ok(book);
 	}
