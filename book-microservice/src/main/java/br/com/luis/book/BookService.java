@@ -1,5 +1,7 @@
 package br.com.luis.book;
 
+import static java.util.Objects.nonNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -17,24 +19,24 @@ public class BookService {
 	@Autowired
 	private CurrencyExchangeProxy currencyExchangeProxy;
 	
+	public BookDto getBookById(Long id) {
+		return bookRepository.findById(id)
+				.map(BookDto::create)
+				.orElseThrow(() -> new ObjectNotFoundException("Not found exception"));
+	}
 	
 	public BookDto getBookById(Long id, String currency) {
 		BookDto book = bookRepository.findById(id)
 				.map(BookDto::create)
 				.orElseThrow(() -> new ObjectNotFoundException("Object not found!"));
-		
-		
 		book.setCurrency(currency);
-		
 		ResponseEntity<CurrencyExchangeDto> response = currencyExchangeProxy
 				.getCurrencyExchange(book.getPrice(), "USD", currency);
 		CurrencyExchangeDto currencyExchangeDto = response.getBody();
 		
-		if(currencyExchangeDto == null) {
-			throw new ObjectNotFoundException("Object not found");
+		if(nonNull(currencyExchangeDto)) {
+			book.setPrice(currencyExchangeDto.getConvertedValue());
 		}
-		
-		book.setPrice(currencyExchangeDto.getConvertedValue());
 		return book;
 	}
 }

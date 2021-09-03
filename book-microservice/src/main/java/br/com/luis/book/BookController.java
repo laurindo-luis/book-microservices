@@ -19,6 +19,12 @@ public class BookController {
 	@Autowired
 	private Environment environment;
 	
+	@GetMapping("/{id}")
+	public ResponseEntity<BookDto> getBookById(@PathVariable Long id) {
+		BookDto book = bookService.getBookById(id);
+		return ResponseEntity.ok(book);
+	}
+	
 	@GetMapping("/{id}/{currency}")
 	public ResponseEntity<BookDto> getBookById(@PathVariable("id") Long id, 
 			@PathVariable("currency") String currency) {
