@@ -4,6 +4,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import feign.FeignException;
 import feign.RetryableException;
 
 @RestControllerAdvice
@@ -21,5 +22,13 @@ public class ExceptionConfig {
 	})
 	public ResponseEntity<Void> notFound(Exception e) {
 		return ResponseEntity.notFound().build();
+	}
+	
+	@ExceptionHandler({
+		IllegalArgumentException.class,
+		FeignException.BadRequest.class
+	})
+	public ResponseEntity<?> badRequest(Exception e) {
+		return ResponseEntity.badRequest().build();
 	}
 }
