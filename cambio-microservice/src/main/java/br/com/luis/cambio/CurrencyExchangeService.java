@@ -17,7 +17,7 @@ public class CurrencyExchangeService {
 		CurrencyExchange currency = currencyExchangeRepository.findByFromCurrencyAndToCurrency(from, to);
 		
 		if(isNull(currency)) {
-			throw new ObjectNotFoundException("Object not found");
+			throw new IllegalArgumentException();
 		}
 		
 		return CurrencyExchangeDto.create(currency);

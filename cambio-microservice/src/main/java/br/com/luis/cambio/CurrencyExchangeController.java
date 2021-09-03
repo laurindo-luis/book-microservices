@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class CurrencyExchangeController {
 	
 	@Autowired
-	Environment environment;
+	private Environment environment;
 	
 	@Autowired
 	private CurrencyExchangeService currencyExchangeService;

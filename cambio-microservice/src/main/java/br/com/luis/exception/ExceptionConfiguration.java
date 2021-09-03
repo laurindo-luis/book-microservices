@@ -14,4 +14,11 @@ public class ExceptionConfiguration {
 		return ResponseEntity.noContent().build();
 	}
 	
+	@ExceptionHandler({
+		IllegalArgumentException.class
+	})
+	public ResponseEntity<?> badRequest(Exception e) {
+		return ResponseEntity.badRequest().build();
+	}
+	
 }
