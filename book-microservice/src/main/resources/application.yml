@@ -7,6 +7,11 @@ eureka:
       defaultZone: http://localhost:8761/eureka  
 
 resilience4j:
+  ratelimiter:
+    instances:
+      default:
+        limit-for-period: 2
+        limit-refresh-period: 20s
   retry:
     instances:
       book-service:
