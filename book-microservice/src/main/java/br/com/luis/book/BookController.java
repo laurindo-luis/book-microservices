@@ -46,9 +46,13 @@ public class BookController {
 	}
 	
 	@GetMapping("/resilience4j")
-	@Retry(name = "default")
+	@Retry(name = "default", fallbackMethod = "fallbackMethod")
 	public String getTestResilience4j() {
 		logger.info("Request book-service is received!");
 		return new RestTemplate().getForEntity("http://localhost:8080/book-service", String.class).getBody();
+	}
+	
+	public String fallbackMethod(Exception e) {
+		return "fallbackMethod!!!";
 	}
 }
