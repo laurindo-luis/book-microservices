@@ -13,5 +13,4 @@ public interface CurrencyExchangeProxy {
 			@PathVariable Double value, 
 			@PathVariable String from, 
 			@PathVariable String to);
-	
 }
